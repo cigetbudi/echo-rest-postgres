@@ -1,17 +1,10 @@
 package main
 
-import (
-	"net/http"
-
-	"github.com/labstack/echo/v4"
-)
+import "echo-rest-postgres/routes"
 
 func main() {
-	e := echo.New()
-
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "halo semua ini echo")
-	})
+	e := routes.Init()
 
 	e.Logger.Fatal(e.Start(":1234"))
+
 }

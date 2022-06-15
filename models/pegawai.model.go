@@ -19,14 +19,14 @@ func FetchAllPegawai() (Response, error) {
 
 	con := db.CreateCon()
 
-	SqlStatement := "SELECT * FROM pegawai"
+	SqlStatement := "SELECT * FROM PEGAWAI"
 
 	rows, err := con.Query(SqlStatement)
-	defer rows.Close()
 
 	if err != nil {
 		return res, err
 	}
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(&obj.Id, &obj.Nama, &obj.Alamat, &obj.Telepon)
@@ -40,5 +40,7 @@ func FetchAllPegawai() (Response, error) {
 	res.Status = http.StatusOK
 	res.Message = "Success"
 	res.Data = arrobj
+
+	return res, nil
 
 }
